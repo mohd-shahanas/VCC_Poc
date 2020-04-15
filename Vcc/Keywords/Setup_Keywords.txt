@@ -1,0 +1,18 @@
+*** Settings ***
+Resource    Functional_Keywords.txt
+
+
+*** Keywords ***
+Vcc Suite Setup
+    ${driver}=    User Login
+    Set Suite Variable    ${driver}
+
+Vcc Test Setup
+    Driver Initialize
+
+
+
+Driver Initialize
+    Rp Initialize    ${driver}
+    Bp Initialize    ${driver}
+    Mp Initialize    ${driver}

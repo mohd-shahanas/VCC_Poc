@@ -1,0 +1,78 @@
+[default]
+# General
+chromedriver = "D:/Projects/VCC_Automation/Vcc_Poc/Vcc/Utilites/chromedriver"
+vcc_url = "https://cem.visualcommandcenter.com"
+vcc_username = "mohammed.shahanas@accionlabs.com"
+vcc_password = "Accion@0420"
+download_folder = "C:/Users/AL2516/Downloads"
+
+# Login
+username = "UserName"   #Id
+password = "Password"   #Id
+signin = "/html/body/div/div/div/div[2]/div/div/div/div/section/form/div[4]/div/div/input"  #Xpath
+vcc_logo = "VFApplicationControl-HeaderLogo"    #Class Name
+
+# Right Panel
+
+alerts = "AlertsFeedControlSection-Label"   #Class Name
+assets = '//div[@class="FeedControlSection-Label"][text()="Assets"]'    #Xpath
+risk_events = '//div[@class="FeedControlSection-Label"][text()="RISK EVENTS"]'      #Xpath
+context = '//div[@class="FeedControlSection-Label"][text()="CONTEXT"]'      #Xpath
+
+alerts_cb = ''
+assets_cb = ''
+risk_events_cb = ''
+context_cb= ''
+
+
+assets_buildings= '//div[@class="LabeledSymbolCheckBox-Label"][text()="Buildings"]'     #Xpath
+assets_travel = '//div[@class="LabeledSymbolCheckBox-Label"][text()="Travel"]'      #Xpath
+
+
+visible_alerts_count = "AlertsFeedControlCounter-Visible"
+total_alerts_count = "AlertsFeedControlCounter-TotalInner"
+
+visible_alerts = "AlertItemListViewRow-Title"
+
+
+# Bottom Panel
+
+panel_checkbox = "PanelCheckBox"    #Class_name
+panel_cb_check = "CheckBox-Check"   #Class_name
+
+
+items_panel_view = "DataPanelCardView-Card"     #Class Name
+items_item_table = "VccDetailsGrid-Table"       #Class Name
+items_details_edit = '//div[@class="MenuBarControlCell-Icon"][@title="Edit item"]'   #Xpath
+items_edit_elements = "InputFieldView"      #Class Name
+items_edit_textbox = "vf-input-text"        #Class Name
+items_edit_save = '//div[@class="DefaultFeedItemEditorControl-Button vf-button-text vf-button-bold"][text()="Save"]'    #Xpath
+items_details_back_btn = "DetailsTabControl-BackButton"
+scale_bar = "ScaleBar"     #Class Name
+
+# Menu
+menu = ".vf-button-minor[title='Open VCC Menu']"    #CSS Selector
+about_vcc = '//div[@class="AppMenuButtonGridButton-Label"][text()="About VCC"]'     #Xpath
+
+menu_grid_sections = "AppMenuButtonGridSection"     #Class Name
+menu_grid_section_title = "AppMenuButtonGridSection-Title"     #Class Name
+menu_grid_button = "AppMenuButtonGridButton"     #Class Name
+menu_grid_button_label = "AppMenuButtonGridButton-Label"     #Class Name
+
+menu_list_sections = "AppMenuButtonListSection"     #Class Name
+menu_list_section_title = "AppMenuButtonListSection-Title"     #Class Name
+menu_list_button = "AppMenuButtonListButton"     #Class Name
+menu_list_button_label = "AppMenuButtonListButton-Label"     #Class Name
+
+
+
+saved_view_list = "SavedViewsManagerDialog-List"     #Class Name
+saved_view_row_title = "SavedViewsManagerDialog-SavedViewRowTitle"     #Class Name
+create_new_view_btn = "SavedViewsManagerDialog-CreateButton"
+create_view_title_tb = '//input[@class="vf-input-text"][@data-id="_title"]'     #Xpath
+saved_view_minor_btn = "SavedViewControl-MinorButtons"     #Class Name
+visible_to_others_cb = "CheckBox-Check"     #Class Name
+save_new_view = '//div[@class="vf-button-text vf-button-bold"][@data-id="_saveButton"]'     #Xpath
+close_saved_view = "DialogContainer-Close"     #Class Name
+
+

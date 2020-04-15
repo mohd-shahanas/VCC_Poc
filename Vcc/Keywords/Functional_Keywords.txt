@@ -1,0 +1,6 @@
+*** Settings ***
+Library    ../Library/BottomPanelActions.py
+Library    ../Library/GeneralActions.py
+Library    ../Library/MenuActions.py
+Library    ../Library/RightPanelActions.py
+Library    ../Library/CommonUtilities.py
