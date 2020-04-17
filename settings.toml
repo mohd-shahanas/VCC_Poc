@@ -28,6 +28,8 @@ context_cb= ''
 assets_buildings= '//div[@class="LabeledSymbolCheckBox-Label"][text()="Buildings"]'     #Xpath
 assets_travel = '//div[@class="LabeledSymbolCheckBox-Label"][text()="Travel"]'      #Xpath
 
+risk_events_inrix_traffic = '//div[@class="LabeledSymbolCheckBox-Label"][text()="INRIX Traffic"]'
+airports = '//div[@class="LabeledSymbolCheckBox-Label"][text()="Airports"]'
 
 visible_alerts_count = "AlertsFeedControlCounter-Visible"
 total_alerts_count = "AlertsFeedControlCounter-TotalInner"
@@ -51,7 +53,7 @@ items_details_back_btn = "DetailsTabControl-BackButton"
 scale_bar = "ScaleBar"     #Class Name
 
 # Menu
-menu = ".vf-button-minor[title='Open VCC Menu']"    #CSS Selector
+menu = '//div[@class="vf-button-minor"][@title="Open VCC Menu"]'    #Xpath
 about_vcc = '//div[@class="AppMenuButtonGridButton-Label"][text()="About VCC"]'     #Xpath
 
 menu_grid_sections = "AppMenuButtonGridSection"     #Class Name
