@@ -8,24 +8,36 @@ Test Setup    Vcc Test Setup
 
 *** Test Cases ***
 
-Test_06 Edit an Asset
-    [Documentation]    Validating Edit property of Building items
+Test_04 Activate Asset
+    [Documentation]    Validating Activating Asset
     Disable All Assets
     Expand Assets
     Enable Buildings
+    Enable Travel
+    ${feed_panel_count}=    Get Feed Count    ASSETS
     Select Items Panel
-    &{building_details}=    Get Building Item Details    1
-    Log    ${building_details["Contact"]}
-    Edit Building Contact Details
-    Deselect Items Panel
-    Enable Buildings
-    Enable Buildings
-    Select Items Panel
-    &{building_details}=    Get Building Item Details    1
-    Log    ${building_details["Contact"]}
-    Close Edit Window
-    Deselect Items Panel
-    Expand Alerts
+    ${item_panel_count}=    Get Item Count
+    Should Be True    ${feed_panel_count} == ${item_panel_count}
+
+Test_11 Menu - Scale Bar
+    [Documentation]    Validating Deactivate and activate functionality of Scale Bar
+
+    Click Menu
+    ${scale_bar_enable_status}=    Is Preference Tab Selected    Scale Bar
+    Should be True    ${scale_bar_enable_status} == True
+
+    Deselect Preference Tab    Scale Bar
+    Click Menu
+
+    ${scale_bar_display}=    Get Scalebar Display Status
+    Should be True    ${scale_bar_display} == False
+
+    Click Menu
+    Select Preference Tab    Scale Bar
+    Click Menu
+
+    ${scale_bar_display}=    Get Scalebar Display Status
+    Should be True    ${scale_bar_display} == True
 
 Test_08 Menu - Create CheckList Template
     [Documentation]    Validating Create CheckList Template from Menu
