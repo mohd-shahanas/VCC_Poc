@@ -3,6 +3,7 @@ import os
 
 from dynaconf import settings as conf
 
+
 def vcc_click(element, text):
     element.click()
     print(text + " Clicked")

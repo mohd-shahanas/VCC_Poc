@@ -38,6 +38,14 @@ class RightPanelActions:
                 req_section = section
         return req_section.find_element_by_class_name("CheckBox-Check")
 
+    def get_feed_count(self,label):
+        feed_section = self.driver.find_elements_by_xpath('//div[@class="FeedControlSection"]')
+        req_section = ''
+        for section in feed_section:
+            if section.find_element_by_class_name("FeedControlSection-Label").text == label:
+                req_section = section
+        return req_section.find_element_by_class_name("FeedControlSection-Count").text
+
     def enable_alerts(self):
         alerts_section = self.driver.find_element_by_class_name("AlertsFeedControlSection-Check")
         alerts_cb = alerts_section.find_element_by_class_name("CheckBox-Check")
@@ -45,6 +53,7 @@ class RightPanelActions:
             vcc_click(alerts_cb,"Alerts Cb")
         else:
             print("All Alerts are already enabled")
+        time.sleep(20)
 
     def disable_alerts(self):
         alerts_section = self.driver.find_element_by_class_name("AlertsFeedControlSection-Check")
@@ -110,7 +119,53 @@ class RightPanelActions:
     def get_alert_total_count(self):
         return self.driver.find_element_by_class_name(conf.TOTAL_ALERTS_COUNT).text
 
-    def display_visible_alerts(self):
+    def get_visible_alerts(self):
         visible_alerts = self.driver.find_elements_by_class_name(conf.VISIBLE_ALERTS)
-        for _id, alert in enumerate(visible_alerts):
-            print((_id,alert.text))
+        return [alert.text for alert in visible_alerts]
+
+    def select_visible_alert(self, alert_index):
+        visible_alerts = self.driver.find_elements_by_class_name(conf.VISIBLE_ALERTS)
+        selected_alert = visible_alerts[int(alert_index)-1]
+        selected_alert_text = selected_alert.text
+        vcc_click(selected_alert,"Alert Index "+ alert_index)
+        return selected_alert_text
+
+    def click_alert_specific_menu_item(self, menu_item):
+        element_xpath ='//div[@class="MenuBarControlCell-Icon"][@title="' + menu_item + '"]'
+        menu_element = self.driver.find_element_by_xpath(element_xpath)
+        vcc_click(menu_element,menu_item)
+        time.sleep(10)
+
+    def add_acknowledge_details(self):
+        add_info_tb = self.driver.find_element_by_xpath('//textarea[@class="AlertDialogBase-DetailsText vf-input-text"][@data-id="_message"]')
+        add_info_tb.send_keys("Ignore- For UI Test")
+        time.sleep(5)
+        ack_alert = self.driver.find_element_by_xpath('//div[@class="vf-button-text vf-button-bold"][text()="Acknowledge Alert"]')
+        vcc_click(ack_alert, "Acknowledge")
+
+    def check_alert_present(self, alert_title):
+        visible_alerts = self.get_visible_alerts()
+        return alert_title in visible_alerts
+
+    def add_email_details_and_send(self):
+        email_tb = self.driver.find_element_by_xpath('//input[@type="text"][@data-id="_additionalContacts"]')
+        email_tb.send_keys("kmshahanas007@gmail.com")
+        time.sleep(5)
+
+        attachments = self.driver.find_elements_by_class_name("SendMessageDialog-AttachmentCheckBox")
+        for item in attachments:
+            cb = item.find_element_by_class_name("CheckBox-Check")
+            cb_label = item.find_element_by_class_name("CheckBox-Label").text
+            vcc_click(cb,cb_label)
+
+        email_btn = self.driver.find_element_by_xpath('//div[@class="vf-button-text vf-button-bold"][text()="Send Email"]')
+        vcc_click(email_btn, "Send Email")
+
+    def enable_inrix_traffic(self):
+        self.expand_risk_events()
+        vcc_click(self.driver.find_element_by_xpath(conf.RISK_EVENTS_INRIX_TRAFFIC), "Inrix Traffic")
+        time.sleep(10)
+
+
+
+

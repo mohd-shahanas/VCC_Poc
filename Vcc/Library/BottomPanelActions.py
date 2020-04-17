@@ -53,6 +53,23 @@ class BottomPanelActions:
         else:
             print("Timeline Panel already deselected")
 
+    def get_items_from_item_panel(self):
+        item_text = []
+        panel_items = self.driver.find_elements_by_class_name(conf.ITEMS_PANEL_VIEW)
+        for item in panel_items:
+            item_text.append(item.find_element_by_xpath('//div[@class="VccDetailsVerticalLayout-Heading"][@data-id="_heading"]').text)
+
+        print(item_text)
+
+    def get_item_count(self):
+        filter_icon = self.driver.find_elements_by_class_name("ItemTypeFilterButton")
+        final_count = 0
+        for item in filter_icon:
+            item_count = item.find_element_by_xpath('//div[@data-id="_countView"]').text
+            print(item_count)
+            final_count = final_count + int(item_count)
+        return final_count
+
     def get_building_item_details(self, item_no):
         panel_items = self.driver.find_elements_by_class_name(conf.ITEMS_PANEL_VIEW)
         while len(panel_items) < 1:
@@ -78,6 +95,9 @@ class BottomPanelActions:
         vcc_click(save_button,"Save")
         time.sleep(5)
 
+        self.close_edit_window()
+
+    def close_edit_window(self):
         edit_back_btn = self.driver.find_element_by_class_name(conf.ITEMS_DETAILS_BACK_BTN)
         vcc_click(edit_back_btn, "Back Btn")
 
@@ -91,6 +111,5 @@ class BottomPanelActions:
     def click_download(self):
         download_btn = self.driver.find_element_by_xpath('//div[@data-id="_contentZone"][text()="Download"]')
         vcc_click(download_btn,"Download")
-
 
 

@@ -10,4 +10,3 @@ Test_13 Excel Report from Menu
     [Documentation]    Validating Excel Report from Menu
     Click Menu
     Sleep    20
-    

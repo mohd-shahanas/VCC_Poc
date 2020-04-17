@@ -6,11 +6,62 @@ Test Setup    Vcc Test Setup
 
 *** Test Cases ***
 
-Test_13 Excel Report from Menu
-    [Documentation]    Validating Excel Report from Menu
+Test_01 Acknowledge an Alert
+    [Documentation]    Validating Acknowledge functionality of an Alert
+    Enable Alerts
+    ${alert_cnt_before}=    Get Alert Total Count
+    ${selected_alert_title}=    Select Visible Alert    1
+    Click Alert Specific Menu Item    Acknowledge
+    Add Acknowledge Details
+    Sleep    5s
+    ${alert_cnt_after}=    Get Alert Total Count
+    Should Not Be Equal    ${alert_cnt_before}    ${alert_cnt_after}
+    ${alert_present}=    Check Alert Present    ${selected_alert_title}
+    Should Be True    ${alert_present} == False
+
+Test_03 Activate Risk Event
+    [Documentation]    Validating Activating Risk Event
+    Disable Alerts
+    Disable All Risk Events
+    Expand Risk Events
+    Enable Inrix Traffic
+    ${feed_panel_count}=    Get Feed Count    RISK EVENTS
+    Select Items Panel
+    ${item_panel_count}=    Get Item Count
+    Should Be True    ${feed_panel_count} == ${item_panel_count}
+    Enable Inrix Traffic
+
+Test_04 Activate Asset
+    [Documentation]    Validating Activating Asset
+    Disable All Assets
+    Expand Assets
+    Enable Buildings
+    Enable Travel
+    ${feed_panel_count}=    Get Feed Count    ASSETS
+    Select Items Panel
+    ${item_panel_count}=    Get Item Count
+    Should Be True    ${feed_panel_count} == ${item_panel_count}
+
+Test_06 Edit an Asset
+    [Documentation]    Validating Edit property of Building items
+    Disable All Assets
+    Expand Assets
+    Enable Buildings
+    Select Items Panel
+    &{building_details}=    Get Building Item Details    1
+    Log    ${building_details["Contact"]}
+    Edit Building Contact Details
+    Deselect Items Panel
+    Enable Buildings
+    Enable Buildings
+    Select Items Panel
+    &{building_details}=    Get Building Item Details    1
+    Log    ${building_details["Contact"]}
+    Close Edit Window
+    Deselect Items Panel
+    Expand Alerts
 
 
-*** comment ***
 Test_08 Menu - Create CheckList Template
     [Documentation]    Validating Create CheckList Template from Menu
     Click Menu
@@ -20,7 +71,7 @@ Test_08 Menu - Create CheckList Template
     Create New CheckList    title=UI Automation 01
     @{new_checklists}=    Get Item List
     Validate Created Item    ${old_checklists}    ${new_checklists}    UI Automation 01
-    Switch to Default Window
+    [Teardown]    Switch to Default Window
 
 Test_09 Menu - Create Note
     [Documentation]    Validating Create note from Menu
@@ -31,7 +82,7 @@ Test_09 Menu - Create Note
     Create New Note    title=UI Automation 01
     @{new_notes}=    Get Item List
     Validate Created Item    ${old_notes}    ${new_notes}    UI Automation 01
-    Switch to Default Window
+    [Teardown]    Switch to Default Window
 
 Test_11 Menu - Scale Bar
     [Documentation]    Validating Deactivate and activate functionality of Scale Bar
@@ -52,6 +103,14 @@ Test_11 Menu - Scale Bar
 
     ${scale_bar_display}=    Get Scalebar Display Status
     Should be True    ${scale_bar_display} == True
+
+Test_12 Send Message from Menu
+    [Documentation]    Validating Send Message functionality
+    Enable Alerts
+    ${selected_alert_title}=    Select Visible Alert    1
+    Click Alert Specific Menu Item    Send Email
+    Add Email Details And Send
+    Sleep    5s
 
 Test_13 Excel Report from Menu
     [Documentation]    Validating Excel Report from Menu
@@ -80,6 +139,8 @@ Test_14 Menu - Create Saved View
 Test_15 Menu - Asset Map Export
     [Documentation]    Validating Asset Map Export Feature
     Enable Alerts
+    Disable All Assets
+    Expand Assets
     Enable Buildings
     Enable Travel
     Click Menu

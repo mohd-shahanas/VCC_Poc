@@ -4,6 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 
 from dynaconf import settings as conf
 from Vcc.Library.CommonUtilities import *
@@ -15,7 +16,11 @@ class GeneralActions():
 
     def user_login(self, username=conf.VCC_USERNAME, password=conf.VCC_PASSWORD):
         try:
-            self.driver = webdriver.Chrome(conf.CHROMEDRIVER)
+
+            # chromeOptions = Options()
+            # chromeOptions.add_experimental_option("prefs",{"download.default_directory" : conf.DOWNLOAD_FOLDER})
+            # self.driver = webdriver.Chrome(executable_path=conf.CHROMEDRIVER, chrome_options=chromeOptions)
+            self.driver = webdriver.Chrome(executable_path=conf.CHROMEDRIVER)
 
         except Exception as msg:
             print(msg)
@@ -36,6 +41,8 @@ class GeneralActions():
 
         except Exception as msg:
             print(msg)
+            self.driver.close()
+            return None
 
         return self.driver
 

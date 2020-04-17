@@ -18,7 +18,7 @@ class MenuActions():
         self.default_window = self.driver.current_window_handle
 
     def click_menu(self):
-        vcc_click(self.driver.find_element_by_css_selector(conf.MENU), "Menu")
+        vcc_click(self.driver.find_element_by_xpath(conf.MENU), "Menu")
 
     def get_menu_grid_element(self, category, tab_name):
         sections = self.driver.find_elements_by_class_name(conf.MENU_GRID_SECTIONS)
@@ -82,6 +82,12 @@ class MenuActions():
         return saved_views_list
 
     def create_new_saved_view(self, title):
+        '''
+        existing_views = self.get_item_list()
+        if title in existing_views:
+            print(title + " already present")
+            return
+        '''
         new_view_btn = self.driver.find_element_by_class_name(conf.CREATE_NEW_VIEW_BTN)
         vcc_click(new_view_btn, "Create New View Btn")
         self.driver.find_element_by_xpath(conf.CREATE_VIEW_TITLE_TB).send_keys(title)
@@ -137,6 +143,12 @@ class MenuActions():
             last_height = new_height
 
     def create_new_note(self, title):
+        '''
+        existing_notes = self.get_item_list()
+        if title in existing_notes:
+            print(title + " already present")
+            return
+        '''
         new_note_btn = self.driver.find_element_by_class_name("CreateLinkControl")
         vcc_click(new_note_btn, "New Note")
         time.sleep(5)
@@ -157,6 +169,12 @@ class MenuActions():
         vcc_click(back_to_main, "Back Btn")
 
     def create_new_checklist(self, title):
+        '''
+        existing_checklist = self.get_item_list()
+        if title in existing_checklist:
+            print(title + " already present")
+            return
+        '''
         new_checklist_btn = self.driver.find_element_by_class_name("CreateLinkControl")
         vcc_click(new_checklist_btn, "New Note")
         time.sleep(5)
