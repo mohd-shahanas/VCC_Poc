@@ -5,44 +5,44 @@ Suite Setup    Vcc Suite Setup
 Test Setup    Vcc Test Setup
 
 *** Test Cases ***
+Test_01 Acknowledge an Alert
+    [Documentation]    Validating Acknowledge functionality of an Alert
+    Enable Alerts
+    ${selected_alert_title}=    Select Visible Alert    1
+    Click Alert Specific Menu Item    Acknowledge
+    Add Acknowledge Details
+    Sleep    5s
+    ${alert_present}=    Check Alert Present    ${selected_alert_title}
+    Should Be True    ${alert_present} == False
 
-*** Test Cases ***
-
-Test_04 Activate Asset
-    [Documentation]    Validating Activating Asset
+Test_06 Edit an Asset
+    [Documentation]    Validating Edit property of Building items
     Disable All Assets
     Expand Assets
-    Enable Buildings
-    Enable Travel
-    ${feed_panel_count}=    Get Feed Count    ASSETS
+    Activate Buildings Feed
     Select Items Panel
-    ${item_panel_count}=    Get Item Count
-    Should Be True    ${feed_panel_count} == ${item_panel_count}
-
-Test_11 Menu - Scale Bar
-    [Documentation]    Validating Deactivate and activate functionality of Scale Bar
-
-    Click Menu
-    ${scale_bar_enable_status}=    Is Preference Tab Selected    Scale Bar
-    Should be True    ${scale_bar_enable_status} == True
-
-    Deselect Preference Tab    Scale Bar
-    Click Menu
-
-    ${scale_bar_display}=    Get Scalebar Display Status
-    Should be True    ${scale_bar_display} == False
-
-    Click Menu
-    Select Preference Tab    Scale Bar
-    Click Menu
-
-    ${scale_bar_display}=    Get Scalebar Display Status
-    Should be True    ${scale_bar_display} == True
+    &{building_details}=    Get Building Item Details    1
+    ${old_value}    Set Variable    ${building_details["Contact"]}
+    Edit Building Contact Details
+    &{building_details}=    Get Building Item Details    1
+    ${interim_value}    Set Variable    ${building_details["Contact"]}
+    Deselect Items Panel
+    Deativate Buildings Feed
+    Activate Buildings Feed
+    Select Items Panel
+    &{building_details}=    Get Building Item Details    1
+    ${new_value}    Set Variable    ${building_details["Contact"]}
+    Close Edit Window
+    Deselect Items Panel
+    Expand Alerts
+    Should Not Be Equal    ${old_value}    ${new_value}
+    Should Not Be Equal    ${old_value}    ${interim_value}
 
 Test_08 Menu - Create CheckList Template
     [Documentation]    Validating Create CheckList Template from Menu
     Click Menu
     Click Launch Apps Tab    Checklists
+    Sleep    30
     Switch to New Window
     @{old_checklists}=    Get Item List
     Create New CheckList    title=UI Automation 01
@@ -50,12 +50,16 @@ Test_08 Menu - Create CheckList Template
     Validate Created Item    ${old_checklists}    ${new_checklists}    UI Automation 01
     [Teardown]    Switch to Default Window
 
-Test_14 Menu - Create Saved View
-    [Documentation]    Validating Create New Saved View from Menu
+Test_15 Menu - Export Map Image
+    [Documentation]    Validating Export Map Image Feature
+    Enable Alerts
+    Disable All Assets
+    Expand Assets
+    Activate Buildings Feed
+    Activate Travel Feed
     Click Menu
-    Click Tools Tab    Saved Views
-    @{old_views}=    Get Saved Views
-    Create New Saved View    Testing 01
-    @{new_views}=    Get Saved Views
-    Validate Created Item    ${old_views}    ${new_views}    Testing 01
-    Close Saved View Tab
+    Click Tools Tab    Export Map Image
+    Sleep    20
+    Click Download
+    Sleep    20
+    Validate File Exists    VCC Map View.jpg

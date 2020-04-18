@@ -4,3 +4,22 @@ Library    ../Library/GeneralActions.py
 Library    ../Library/MenuActions.py
 Library    ../Library/RightPanelActions.py
 Library    ../Library/CommonUtilities.py
+
+*** Keywords ***
+Activate Buildings Feed
+    click Buildings
+
+Deativate Buildings Feed
+    click Buildings
+
+Activate Travel Feed
+    click Travel
+
+Deactivate Travel Feed
+    click Travel
+
+Activate Inrix Traffic
+    click Inrix Traffic
+
+Deativate Inrix Traffic
+    click Inrix Traffic

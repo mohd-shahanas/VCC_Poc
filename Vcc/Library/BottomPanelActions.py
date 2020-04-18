@@ -87,8 +87,10 @@ class BottomPanelActions:
         item_edit_fields = self.driver.find_elements_by_class_name(conf.ITEMS_EDIT_ELEMENTS)
         contact_item = item_edit_fields[3]
         contact_item_text = contact_item.find_element_by_class_name(conf.ITEMS_EDIT_TEXTBOX)
+        new_value = contact_item_text.get_attribute('value') + "_1"
         contact_item_text.clear()
-        contact_item_text.send_keys("Stefanie Smith")
+        contact_item_text.send_keys(new_value)
+        #contact_item_text.send_keys("Stefanie Smith")
         time.sleep(5)
 
         save_button = self.driver.find_element_by_xpath(conf.ITEMS_EDIT_SAVE)
