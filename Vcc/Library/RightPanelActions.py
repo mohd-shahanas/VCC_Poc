@@ -105,11 +105,11 @@ class RightPanelActions:
         else:
             vcc_click(context_cb, "Context Cb")
 
-    def enable_buildings(self):
+    def click_buildings(self):
         self.expand_assets()
         vcc_click(self.driver.find_element_by_xpath(conf.ASSETS_BUILDINGS), "Buildings")
 
-    def enable_travel(self):
+    def click_travel(self):
         self.expand_assets()
         vcc_click(self.driver.find_element_by_xpath(conf.ASSETS_TRAVEL), "Travel")
 
@@ -161,11 +161,7 @@ class RightPanelActions:
         email_btn = self.driver.find_element_by_xpath('//div[@class="vf-button-text vf-button-bold"][text()="Send Email"]')
         vcc_click(email_btn, "Send Email")
 
-    def enable_inrix_traffic(self):
+    def click_inrix_traffic(self):
         self.expand_risk_events()
         vcc_click(self.driver.find_element_by_xpath(conf.RISK_EVENTS_INRIX_TRAFFIC), "Inrix Traffic")
         time.sleep(10)
-
-
-
-
