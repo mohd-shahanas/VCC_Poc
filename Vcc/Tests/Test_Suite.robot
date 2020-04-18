@@ -27,6 +27,7 @@ Test_06 Edit an Asset
     Edit Building Contact Details
     &{building_details}=    Get Building Item Details    1
     ${interim_value}    Set Variable    ${building_details["Contact"]}
+    Close Edit Window
     Deselect Items Panel
     Deativate Buildings Feed
     Activate Buildings Feed
@@ -113,6 +114,9 @@ Test_06 Edit an Asset
     &{building_details}=    Get Building Item Details    1
     ${old_value}    Set Variable    ${building_details["Contact"]}
     Edit Building Contact Details
+    &{building_details}=    Get Building Item Details    1
+    ${interim_value}    Set Variable    ${building_details["Contact"]}
+    Close Edit Window
     Deselect Items Panel
     Deativate Buildings Feed
     Activate Buildings Feed
@@ -123,6 +127,7 @@ Test_06 Edit an Asset
     Deselect Items Panel
     Expand Alerts
     Should Not Be Equal    ${old_value}    ${new_value}
+    Should Not Be Equal    ${old_value}    ${interim_value}
 
 
 Test_08 Menu - Create CheckList Template

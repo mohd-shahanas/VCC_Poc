@@ -5,6 +5,7 @@ Suite Setup    Vcc Suite Setup
 Test Setup    Vcc Test Setup
 
 *** Test Cases ***
+
 Test_01 Acknowledge an Alert
     [Documentation]    Validating Acknowledge functionality of an Alert
     Enable Alerts
@@ -26,6 +27,7 @@ Test_06 Edit an Asset
     Edit Building Contact Details
     &{building_details}=    Get Building Item Details    1
     ${interim_value}    Set Variable    ${building_details["Contact"]}
+    Close Edit Window
     Deselect Items Panel
     Deativate Buildings Feed
     Activate Buildings Feed
