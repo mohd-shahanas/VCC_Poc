@@ -53,16 +53,3 @@ Test_08 Menu - Create CheckList Template
     [Teardown]    Run Keywords    Remove Item From List    1
     ...           AND             Switch to Default Window
 
-Test_15 Menu - Export Map Image
-    [Documentation]    Validating Export Map Image Feature
-    Enable Alerts
-    Disable All Assets
-    Expand Assets
-    Activate Buildings Feed
-    Activate Travel Feed
-    Click Menu
-    Click Tools Tab    Export Map Image
-    Sleep    20
-    Click Download
-    Sleep    20
-    Validate File Exists    VCC Map View.jpg
