@@ -50,7 +50,8 @@ Test_08 Menu - Create CheckList Template
     Create New CheckList    title=UI Automation 01
     @{new_checklists}=    Get Item List
     Validate Created Item    ${old_checklists}    ${new_checklists}    UI Automation 01
-    [Teardown]    Switch to Default Window
+    [Teardown]    Run Keywords    Remove Item From List    1
+    ...           AND             Switch to Default Window
 
 Test_15 Menu - Export Map Image
     [Documentation]    Validating Export Map Image Feature

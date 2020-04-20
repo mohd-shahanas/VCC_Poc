@@ -165,3 +165,7 @@ class RightPanelActions:
         self.expand_risk_events()
         vcc_click(self.driver.find_element_by_xpath(conf.RISK_EVENTS_INRIX_TRAFFIC), "Inrix Traffic")
         time.sleep(10)
+
+
+
+

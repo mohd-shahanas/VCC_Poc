@@ -14,10 +14,22 @@ class MenuActions():
         self.default_window = None
 
     def mp_initialize(self, driver):
+        """
+        Initializer for Menu actions
+
+        Arguments: The keyword takes 1 argument.
+        | Argument 1  |
+        | Driver      |
+
+        """
         self.driver = driver
         self.default_window = self.driver.current_window_handle
 
     def click_menu(self):
+        """
+        Click the Menu Icon/Button
+
+        """
         vcc_click(self.driver.find_element_by_xpath(conf.MENU), "Menu")
 
     def get_menu_grid_element(self, category, tab_name):
@@ -131,6 +143,15 @@ class MenuActions():
         time.sleep(5)
         items = self.driver.find_elements_by_class_name("ListController-ItemTitle")
         return [item.text for item in items]
+
+    def remove_item_from_list(self,index):
+        self.scroll_down()
+        time.sleep(5)
+        item = self.driver.find_elements_by_class_name("ListController-ListItem")[int(index)-1]
+        delete_btn = item.find_element_by_class_name("DefaultItemControls-RemoveButton")
+        vcc_click(delete_btn, "Delete Btn")
+        remove_btn = self.driver.find_element_by_xpath('//div[@class="Button IconButton Button-Warning RemoveButton"]')
+        vcc_click(remove_btn, "Remove Btn")
 
     def scroll_down(self):
         last_height = self.driver.execute_script("return document.body.scrollHeight")
