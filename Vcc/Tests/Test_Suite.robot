@@ -14,7 +14,7 @@ Test_01 Acknowledge an Alert
     Add Acknowledge Details
     Sleep    5s
     ${alert_present}=    Check Alert Present    ${selected_alert_title}
-    Verify Object Equal    ${alert_present}    False
+    Verify Object Equal    ${alert_present}    ${False}
 
 Test_03 Activate Risk Event
     [Documentation]    Validating Activating Risk Event
