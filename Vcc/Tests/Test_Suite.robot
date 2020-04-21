@@ -14,7 +14,7 @@ Test_01 Acknowledge an Alert
     Add Acknowledge Details
     Sleep    5s
     ${alert_present}=    Check Alert Present    ${selected_alert_title}
-    Should Be True    ${alert_present} == False
+    Verify Object Equal    ${alert_present}    False
 
 Test_03 Activate Risk Event
     [Documentation]    Validating Activating Risk Event
@@ -136,7 +136,8 @@ Test_14 Menu - Create Saved View
     Create New Saved View    Testing 01
     @{new_views}=    Get Saved Views
     Validate Created Item    ${old_views}    ${new_views}    Testing 01
-    Close Saved View Tab
+    [Teardown]    Run Keywords    Delete Saved View    Testing 01
+    ...           AND             Close Saved View Tab
 
 Test_15 Menu - Export Map Image
     [Documentation]    Validating Export Map Image Feature

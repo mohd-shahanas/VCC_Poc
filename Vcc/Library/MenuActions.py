@@ -93,6 +93,19 @@ class MenuActions():
         saved_views_list = [item.text for item in saved_views_items]
         return saved_views_list
 
+    def delete_saved_view(self, view_title):
+        saved_views = self.driver.find_element_by_class_name(conf.SAVED_VIEW_LIST)
+        saved_views_items = saved_views.find_elements_by_class_name(conf.SAVED_VIEW_ROW_TITLE)
+        for item in saved_views_items:
+            if item.text == view_title:
+                vcc_click(item,item.text)
+                time.sleep(5)
+                delete_btn = self.driver.find_element_by_xpath('//div[@data-bindings="graphicId:\'MenuIcon-CommonDelete\'"]')
+                vcc_click(delete_btn,"Delete button")
+                delete_cnf = self.driver.find_element_by_xpath('//div[@class="vf-button-text MessageDialog-Button"]')
+                vcc_click(delete_cnf, "Delete Confirmation")
+
+
     def create_new_saved_view(self, title):
         '''
         existing_views = self.get_item_list()

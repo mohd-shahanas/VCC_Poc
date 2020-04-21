@@ -141,7 +141,7 @@ class RightPanelActions:
         add_info_tb.send_keys("Ignore- For UI Test")
         time.sleep(5)
         ack_alert = self.driver.find_element_by_xpath('//div[@class="vf-button-text vf-button-bold"][text()="Acknowledge Alert"]')
-        vcc_click(ack_alert, "Acknowledge")
+        vcc_click(ack_alert, "Acknowledge Alert")
 
     def check_alert_present(self, alert_title):
         visible_alerts = self.get_visible_alerts()
