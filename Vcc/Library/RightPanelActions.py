@@ -147,6 +147,11 @@ class RightPanelActions:
         visible_alerts = self.get_visible_alerts()
         return alert_title in visible_alerts
 
+    def click_back_to_alerts(self):
+        back_to_alert_btn = self.driver.find_element_by_xpath(
+            '//div[@class="AlertDetailsContainer-BackToAlerts vf-button-minor"]')
+        vcc_click(back_to_alert_btn, "Back to alert")
+
     def add_email_details_and_send(self):
         email_tb = self.driver.find_element_by_xpath('//input[@type="text"][@data-id="_additionalContacts"]')
         email_tb.send_keys("kmshahanas007@gmail.com")
@@ -156,10 +161,16 @@ class RightPanelActions:
         for item in attachments:
             cb = item.find_element_by_class_name("CheckBox-Check")
             cb_label = item.find_element_by_class_name("CheckBox-Label").text
-            vcc_click(cb,cb_label)
+            vcc_click(cb, cb_label)
 
-        email_btn = self.driver.find_element_by_xpath('//div[@class="vf-button-text vf-button-bold"][text()="Send Email"]')
+        email_btn = self.driver.find_element_by_xpath(
+            '//div[@class="vf-button-text vf-button-bold"][text()="Send Email"]')
         vcc_click(email_btn, "Send Email")
+
+        time.sleep(15)
+
+        self.click_back_to_alerts()
+        self.bpobj.deselect_items_panel()
 
     def click_inrix_traffic(self):
         self.expand_risk_events()
