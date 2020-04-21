@@ -26,7 +26,7 @@ Test_03 Activate Risk Event
     Select Items Panel
     ${item_panel_count}=    Get Item Count
     Deativate Inrix Traffic
-    Should Be True    ${feed_panel_count} == ${item_panel_count}
+    Verify Object Equal    ${feed_panel_count}    ${item_panel_count}
 
 Test_04 Activate Asset
     [Documentation]    Validating Activating Asset
@@ -37,7 +37,7 @@ Test_04 Activate Asset
     ${feed_panel_count}=    Get Feed Count    ASSETS
     Select Items Panel
     ${item_panel_count}=    Get Item Count
-    Should Be True    ${feed_panel_count} == ${item_panel_count}
+    Verify Object Equal    ${feed_panel_count}    ${item_panel_count}
     [Teardown]    Run Keywords    Deativate Buildings Feed
     ...           AND             Deactivate Travel Feed
     ...           AND             Deselect Items Panel
@@ -63,8 +63,8 @@ Test_06 Edit an Asset
     Close Edit Window
     Deselect Items Panel
     Expand Alerts
-    Should Not Be Equal    ${old_value}    ${new_value}
-    Should Not Be Equal    ${old_value}    ${interim_value}
+    Verify Object Not Equal    ${old_value}    ${new_value}
+
 
 Test_08 Menu - Create CheckList Template
     [Documentation]    Validating Create CheckList Template from Menu
