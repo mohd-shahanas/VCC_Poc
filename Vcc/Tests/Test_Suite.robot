@@ -5,7 +5,7 @@ Suite Setup    Vcc Suite Setup
 
 
 Test Setup    Vcc Test Setup
-Test Teardown    Run Keyword If Any Test Failed    Refresh Home Page
+Test Teardown    Run Keyword If Test Failed    Refresh Home Page
 
 *** Test Cases ***
 
