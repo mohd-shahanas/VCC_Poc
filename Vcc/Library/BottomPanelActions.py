@@ -73,7 +73,9 @@ class BottomPanelActions:
 
     def get_building_item_details(self, item_no):
         panel_items = self.driver.find_elements_by_class_name(conf.ITEMS_PANEL_VIEW)
-        while len(panel_items) < 1:
+        count = 0
+        while len(panel_items) < 1 and count < 10:
+            count += 1
             time.sleep(5)
             panel_items = self.driver.find_elements_by_class_name(conf.ITEMS_PANEL_VIEW)
         vcc_click(panel_items[int(item_no)], "Item" + item_no)
