@@ -32,8 +32,10 @@ def add_info_message(actual, expected, keyword=''):
 
 
 def verify_object_equal(actual, expected):
-    assert actual == expected, add_info_message(actual, expected)
+    print(add_info_message(str(actual), str(expected)))
+    assert str(actual) == str(expected)
 
 
 def verify_object_not_equal(actual, expected):
-    assert actual != expected, add_info_message(actual, expected, keyword="not")
+    print(add_info_message(str(actual), str(expected), keyword="not"))
+    assert actual != expected
