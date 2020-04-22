@@ -1,4 +1,5 @@
 import time
+from random import randrange
 
 from dynaconf import settings as conf
 from Vcc.Library.CommonUtilities import *
@@ -125,9 +126,23 @@ class RightPanelActions:
 
     def select_visible_alert(self, alert_index):
         visible_alerts = self.driver.find_elements_by_class_name(conf.VISIBLE_ALERTS)
-        selected_alert = visible_alerts[int(alert_index)-1]
-        selected_alert_text = selected_alert.text
-        vcc_click(selected_alert,"Alert Index "+ alert_index)
+        visible_alerts_list = [(alert.text,alert) for alert in visible_alerts]
+        non_duplicate_alerts = []
+        duplicate_alerts = []
+        for alert in visible_alerts_list:
+            if alert[0] in non_duplicate_alerts:
+                duplicate_alerts.append(alert[0])
+            else:
+                non_duplicate_alerts.append(alert[0])
+
+        unique_alerts = list(set(non_duplicate_alerts) - set(duplicate_alerts))
+        selected_alert_text = unique_alerts[randrange(len(unique_alerts)-1)]
+        for alert in visible_alerts_list:
+            if alert[0] == selected_alert_text:
+                selected_alert = alert[1]
+                break
+
+        vcc_click(selected_alert,"Selected Alert")
         return selected_alert_text
 
     def click_alert_specific_menu_item(self, menu_item):

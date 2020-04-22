@@ -7,10 +7,8 @@ Vcc Suite Setup
     ${driver}=    User Login
     Set Suite Variable    ${driver}
 
-
 Vcc Test Setup
     Driver Initialize
-
 
 
 Driver Initialize

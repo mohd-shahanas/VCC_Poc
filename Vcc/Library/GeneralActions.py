@@ -49,5 +49,11 @@ class GeneralActions():
     def initialize_driver(self, driver):
         self.driver = driver
 
+    def refresh_home_page(self):
+        self.driver.refresh()
+        WebDriverWait(self.driver, 120).until(EC.visibility_of_element_located((By.CLASS_NAME, conf.VCC_LOGO)))
+
+        print("Refresh Success")
+
     def user_logout(self):
         self.driver.close()
