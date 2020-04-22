@@ -2,9 +2,10 @@
 Resource    ../Keywords/Setup_Keywords.txt
 
 Suite Setup    Vcc Suite Setup
-Suite Teardown    Run Keyword If Any Tests Failed    Refresh Home Page
+
 
 Test Setup    Vcc Test Setup
+Test Teardown    Run Keyword If Any Test Failed    Refresh Home Page
 
 *** Test Cases ***
 
