@@ -124,8 +124,13 @@ class RightPanelActions:
         visible_alerts = self.driver.find_elements_by_class_name(conf.VISIBLE_ALERTS)
         return [alert.text for alert in visible_alerts]
 
-    def select_visible_alert(self, alert_index):
+    def select_visible_alert(self, alert_index=None):
         visible_alerts = self.driver.find_elements_by_class_name(conf.VISIBLE_ALERTS)
+        count = 0
+        while len(visible_alerts) < 1 and count < 10:
+            count += 1
+            time.sleep(5)
+            visible_alerts = self.driver.find_elements_by_class_name(conf.VISIBLE_ALERTS)
         visible_alerts_list = [(alert.text,alert) for alert in visible_alerts]
         non_duplicate_alerts = []
         duplicate_alerts = []

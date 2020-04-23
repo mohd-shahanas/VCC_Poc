@@ -12,6 +12,7 @@ Vcc Test Setup
 
 
 Driver Initialize
+    General Initialize    ${driver}
     Rp Initialize    ${driver}
     Bp Initialize    ${driver}
     Mp Initialize    ${driver}

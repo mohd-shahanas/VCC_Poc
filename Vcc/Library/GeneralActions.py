@@ -46,7 +46,7 @@ class GeneralActions():
 
         return self.driver
 
-    def initialize_driver(self, driver):
+    def general_initialize(self, driver):
         self.driver = driver
 
     def refresh_home_page(self):

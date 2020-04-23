@@ -12,7 +12,7 @@ Test Teardown    Run Keyword If Test Failed    Refresh Home Page
 Test_01 Acknowledge an Alert
     [Documentation]    Validating Acknowledge functionality of an Alert
     Enable Alerts
-    ${selected_alert_title}=    Select Visible Alert    1
+    ${selected_alert_title}=    Select Visible Alert
     Click Alert Specific Menu Item    Acknowledge
     Add Acknowledge Details
     Sleep    5s
@@ -113,7 +113,7 @@ Test_11 Menu - Scale Bar
 Test_12 Send Message from Menu
     [Documentation]    Validating Send Message functionality
     Enable Alerts
-    ${selected_alert_title}=    Select Visible Alert    1
+    ${selected_alert_title}=    Select Visible Alert
     Click Alert Specific Menu Item    Send Email
     Add Email Details And Send
     Sleep    5s
