@@ -1,10 +1,8 @@
 [default]
 # General
-chromedriver = "D:/Projects/VCC_Automation/Vcc_Poc/Vcc/Utilites/chromedriver"
 vcc_url = "https://cem.visualcommandcenter.com"
 vcc_username = "mohammed.shahanas@accionlabs.com"
 vcc_password = "Accion@0420"
-download_folder = "C:/Users/AL2516/Downloads"
 
 # Login
 username = "UserName"   #Id

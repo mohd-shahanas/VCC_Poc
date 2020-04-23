@@ -1,8 +1,7 @@
 import time
 import os
 
-from dynaconf import settings as conf
-
+download_folder = os.path.join(os.path.abspath(os.getcwd()), "Vcc", "Downloads")
 
 def vcc_click(element, text):
     element.click()
@@ -22,7 +21,7 @@ def get_table_contents(table_element):
     return data
 
 
-def validate_file_exists(filename, folder=conf.DOWNLOAD_FOLDER):
+def validate_file_exists(filename, folder=download_folder):
     assert os.path.exists(os.path.join(folder,filename)) == True
 
 

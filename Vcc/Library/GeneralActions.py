@@ -1,4 +1,5 @@
 import time
+import os
 
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
@@ -17,10 +18,12 @@ class GeneralActions():
     def user_login(self, username=conf.VCC_USERNAME, password=conf.VCC_PASSWORD):
         try:
 
-            # chromeOptions = Options()
-            # chromeOptions.add_experimental_option("prefs",{"download.default_directory" : conf.DOWNLOAD_FOLDER})
-            # self.driver = webdriver.Chrome(executable_path=conf.CHROMEDRIVER, chrome_options=chromeOptions)
-            self.driver = webdriver.Chrome(executable_path=conf.CHROMEDRIVER)
+            chromeOptions = webdriver.ChromeOptions()
+            driver_path = os.path.join(os.path.abspath(os.getcwd()), "Vcc", "Utilities", "chromedriver")
+            download_folder = os.path.join(os.path.abspath(os.getcwd()), "Vcc", "Downloads")
+            chromeOptions.add_experimental_option("prefs",{"download.default_directory" : download_folder})
+            self.driver = webdriver.Chrome(executable_path=driver_path, chrome_options=chromeOptions)
+            
 
         except Exception as msg:
             print(msg)
