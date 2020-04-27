@@ -1,11 +1,15 @@
 import time
 import os
+import logging
 
 download_folder = os.path.join(os.path.abspath(os.getcwd()), "Vcc", "Downloads")
 
+log = logging.getLogger(__name__)
+
+
 def vcc_click(element, text):
     element.click()
-    print(text + " Clicked")
+    log.info(f"{text} Clicked")
     time.sleep(5)
 
 
@@ -31,10 +35,10 @@ def add_info_message(actual, expected, keyword=''):
 
 
 def verify_object_equal(actual, expected):
-    print(add_info_message(str(actual), str(expected)))
+    log.info(add_info_message(str(actual), str(expected)))
     assert str(actual) == str(expected)
 
 
 def verify_object_not_equal(actual, expected):
-    print(add_info_message(str(actual), str(expected), keyword="not"))
+    log.info(add_info_message(str(actual), str(expected), keyword="not"))
     assert actual != expected

@@ -1,5 +1,6 @@
 import time
 import os
+import logging
 
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
@@ -10,6 +11,7 @@ from selenium.webdriver.chrome.options import Options
 from dynaconf import settings as conf
 from Vcc.Library.CommonUtilities import *
 
+log = logging.getLogger(__name__)
 
 class GeneralActions():
     def __init__(self):
@@ -23,10 +25,9 @@ class GeneralActions():
             download_folder = os.path.join(os.path.abspath(os.getcwd()), "Vcc", "Downloads")
             chromeOptions.add_experimental_option("prefs",{"download.default_directory" : download_folder})
             self.driver = webdriver.Chrome(executable_path=driver_path, chrome_options=chromeOptions)
-            
 
         except Exception as msg:
-            print(msg)
+            log.info(str(msg))
 
         try:
             self.driver.get(conf.VCC_URL)
@@ -39,11 +40,11 @@ class GeneralActions():
 
             WebDriverWait(self.driver, 120).until(EC.visibility_of_element_located((By.CLASS_NAME, conf.VCC_LOGO)))
 
-            print("Login Success")
+            log.info("Login Success")
             time.sleep(20)
 
         except Exception as msg:
-            print(msg)
+            log.info(str(msg))
             self.driver.close()
             return None
 
@@ -56,7 +57,7 @@ class GeneralActions():
         self.driver.refresh()
         WebDriverWait(self.driver, 120).until(EC.visibility_of_element_located((By.CLASS_NAME, conf.VCC_LOGO)))
 
-        print("Refresh Success")
+        log.info("Refresh Success")
 
     def user_logout(self):
         self.driver.close()

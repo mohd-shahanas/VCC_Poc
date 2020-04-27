@@ -54,9 +54,6 @@ Test_06 Edit an Asset
     &{building_details}=    Get Building Item Details    1
     ${old_value}    Set Variable    ${building_details["Contact"]}
     Edit Building Contact Details
-    &{building_details}=    Get Building Item Details    1
-    ${interim_value}    Set Variable    ${building_details["Contact"]}
-    Close Edit Window
     Deselect Items Panel
     Deativate Buildings Feed
     Activate Buildings Feed
